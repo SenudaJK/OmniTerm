@@ -5,13 +5,6 @@ $character"""
 # This places the time module on the far right of your terminal
 right_format = "$time"
 
-# --- TIME MODULE ---
-[time]
-disabled = false
-time_format = "%I:%M %p"
-style = "bold fg:#fb923c"
-format = '[\[$time\]]($style)'
-
 [directory]
 style = "bold fg:#38bdf8 bg:#1e293b"
 format = "[$path]($style)"
