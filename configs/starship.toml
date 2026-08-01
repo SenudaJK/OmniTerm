@@ -1,5 +1,3 @@
-# configs/starship.toml
-
 [azure]
 symbol = "󰠅 "
 format = 'on [$symbol($subscription)]($style) '

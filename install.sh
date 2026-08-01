@@ -26,6 +26,13 @@ git clone --quiet https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUS
 # 4. Install Starship (The Theme Engine)
 if ! command -v starship &> /dev/null; then
   echo "⭐ Installing Starship..."
+  
+  # Ensure the target directory exists (Fixes macOS Apple Silicon bug)
+  if [ ! -d "/usr/local/bin" ]; then
+    echo "📁 Creating /usr/local/bin directory..."
+    sudo mkdir -p /usr/local/bin
+  fi
+
   curl -sS https://starship.rs/install.sh | sh -s -- -y
 fi
 
@@ -38,11 +45,12 @@ if [ -f "$HOME/.zshrc" ]; then
   mv "$HOME/.zshrc" "$HOME/.zshrc.backup_$TIMESTAMP"
 fi
 
-# Download your pre-configured dotfiles directly from your GitHub repo
-curl -sL https://raw.githubusercontent.com/your-username/your-repo/main/configs/.zshrc -o "$HOME/.zshrc"
+# UPDATE 1: Point to your actual GitHub repo for the .zshrc file
+curl -sL https://raw.githubusercontent.com/SenudaJK/OmniTerm/main/configs/.zshrc -o "$HOME/.zshrc"
 
 mkdir -p "$HOME/.config"
-curl -sL https://raw.githubusercontent.com/your-username/your-repo/main/configs/starship.toml -o "$HOME/.config/starship.toml"
+# UPDATE 2: Point to your actual GitHub repo for the starship.toml file
+curl -sL https://raw.githubusercontent.com/SenudaJK/OmniTerm/main/configs/starship.toml -o "$HOME/.config/starship.toml"
 
 # 6. Change default shell to Zsh
 if [ "$SHELL" != "$(which zsh)" ]; then

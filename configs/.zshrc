@@ -1,5 +1,3 @@
-# configs/.zshrc
-
 export ZSH="$HOME/.oh-my-zsh"
 
 # Enable all the DevOps plugins
