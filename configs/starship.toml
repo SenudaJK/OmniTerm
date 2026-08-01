@@ -6,8 +6,21 @@ disabled = false
 
 [kubernetes]
 symbol = "☸ "
-format = 'on [⛵ ($user on )($cluster in )$context \($namespace\)](dimmed green) '
+format = 'on [⛵ ($user on )($cluster in )$context \($namespace\)]($style) '
+style = "dimmed green"
 disabled = false
+
+# --- SAFETY ALARMS ---
+
+# 1. Matches any context with 'prod' or 'production' (case-insensitive)
+[[kubernetes.contexts]]
+context_pattern = "(?i).*prod.*"
+style = "bold bg:#ff0000 fg:#ffffff"
+
+# 2. Matches any context with 'staging' or 'uat'
+[[kubernetes.contexts]]
+context_pattern = "(?i).*(staging|uat).*"
+style = "bold bg:#eab308 fg:#000000"
 
 [aws]
 symbol = "☁️  "
