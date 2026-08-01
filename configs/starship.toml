@@ -1,0 +1,17 @@
+# configs/starship.toml
+
+[azure]
+symbol = "󰠅 "
+format = 'on [$symbol($subscription)]($style) '
+style = "blue bold"
+disabled = false
+
+[kubernetes]
+symbol = "☸ "
+format = 'on [⛵ ($user on )($cluster in )$context \($namespace\)](dimmed green) '
+disabled = false
+
+[aws]
+symbol = "☁️  "
+format = 'on [$symbol($profile )(\($region\) )]($style)'
+style = "bold yellow"
