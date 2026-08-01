@@ -37,3 +37,40 @@ function omniterm-update() {
   source ~/.zshrc
   echo "✅ OmniTerm updated successfully!"
 }
+
+# ---------------------------------------------------------
+# OmniTerm Theme Switcher
+# ---------------------------------------------------------
+function omniterm-theme() {
+  echo ""
+  echo "🎨 Choose your OmniTerm aesthetic:"
+  echo "  1) Default (Standard Cloud Colors)"
+  echo "  2) Cyberpunk (Neon Pink & Purple)"
+  echo "  3) Hacker (Matrix Green)"
+  echo ""
+  
+  # Zsh-compatible read prompt
+  echo -n "Enter your choice [1-3] (Default: 1): "
+  read theme_choice
+
+  case "$theme_choice" in
+    2)
+      THEME="cyberpunk.toml"
+      echo "👾 Applying Cyberpunk theme..."
+      ;;
+    3)
+      THEME="hacker.toml"
+      echo "📟 Applying Hacker theme..."
+      ;;
+    *)
+      THEME="default.toml"
+      echo "☁️  Applying Default theme..."
+      ;;
+  esac
+
+  curl -sL "https://raw.githubusercontent.com/SenudaJK/OmniTerm/main/configs/themes/$THEME" -o "$HOME/.config/starship.toml"
+  
+  # Refresh the prompt
+  source ~/.zshrc
+  echo "✅ Theme updated successfully!"
+}
