@@ -45,11 +45,15 @@ We recommend **[MesloLGS NF](https://github.com/romkatv/powerlevel10k#meslo-nerd
 Once your Nerd Font is installed and set in your terminal, run this single command to bootstrap your environment:
 
 ```bash
-curl -sL [https://raw.githubusercontent.com/SenudaJK/OmniTerm/refs/heads/main/install.sh](https://raw.githubusercontent.com/SenudaJK/OmniTerm/refs/heads/main/install.sh) | bash
+curl -sL https://raw.githubusercontent.com/SenudaJK/OmniTerm/refs/heads/main/install.sh | bash
+```
+
+---
 
 ## 🗑️ Uninstallation
 
 Tried OmniTerm but want to go back to your old setup? We've got you covered. Run the uninstall script to automatically delete the OmniTerm configs and restore your original `.zshrc` backup:
 
 ```bash
-curl -sL [https://raw.githubusercontent.com/SenudaJK/OmniTerm/main/uninstall.sh](https://raw.githubusercontent.com/SenudaJK/OmniTerm/main/uninstall.sh) | bash
+curl -sL https://raw.githubusercontent.com/SenudaJK/OmniTerm/main/uninstall.sh | bash
+```
