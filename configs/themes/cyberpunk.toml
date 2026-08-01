@@ -1,0 +1,24 @@
+[azure]
+symbol = "󰠅 "
+format = 'on [$symbol($subscription)]($style) '
+style = "bold fg:#ff00ff" 
+
+[kubernetes]
+symbol = "☸ "
+format = 'on [⛵ ($user on )($cluster in )$context \($namespace\)]($style) '
+style = "bold fg:#00ffff" 
+disabled = false
+
+# --- SAFETY ALARMS ---
+[[kubernetes.contexts]]
+context_pattern = "(?i).*prod.*"
+style = "bold bg:#ff0055 fg:#ffffff" 
+
+[[kubernetes.contexts]]
+context_pattern = "(?i).*(staging|uat).*"
+style = "bold bg:#ffff00 fg:#000000" 
+
+[aws]
+symbol = "☁️  "
+format = 'on [$symbol($profile )(\($region\) )]($style)'
+style = "bold fg:#bd93f9"
