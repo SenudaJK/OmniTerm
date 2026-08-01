@@ -1,52 +1,39 @@
-# --- TOP STATUS LINE WITH ALL CLOUD PROVIDERS ---
-format = """[ $directory](bg:#21262d fg:#58a6ff)[$git_branch $git_status](bg:#21262d)[ $azure](bg:#21262d)[ $aws](bg:#21262d)[ $kubernetes](bg:#21262d)[ $custom](bg:#21262d)
-[ $time]($time_style) $character"""
-
-[directory]
-style = "bold fg:#58a6ff"
-format = "[$path]($style)"
-truncate_to_repo = true
-
-[git_branch]
-symbol = " "
-style = "fg:#bc8cff bg:#21262d"
-format = '[$symbol$branch]($style)'
-
-[git_status]
-style = "fg:#f0883e bg:#21262d"
-format = '[$all_status$ahead_behind]($style)'
-
-# --- AZURE SUBSCRIPTION ---
 [azure]
 symbol = "󰠅 "
-style = "fg:#007fff bg:#21262d"
-format = '[$symbol($subscription)]($style)'
-disabled = false
+format = 'on [$symbol($subscription)]($style) '
+style = "bold fg:#ff00ff" 
 
-# --- AWS PROFILE ---
-[aws]
-symbol = "  "
-style = "fg:#ff9900 bg:#21262d"
-format = '[$symbol($profile)]($style)'
-disabled = false
-
-# --- KUBERNETES CONTEXT (AKS / Connected Cluster) ---
 [kubernetes]
 symbol = "☸ "
-style = "fg:#326ce5 bg:#21262d"
-format = '[$symbol($context)]($style)'
+format = 'on [⛵ ($user on )($cluster in )$context \($namespace\)]($style) '
+style = "bold fg:#00ffff" 
 disabled = false
 
-# --- SYSTEM METRICS (CPU SKULL) ---
-[custom.cpu]
-command = "ps -A -o %cpu | awk -v cores=$(sysctl -n hw.ncpu) '{s+=$1} END {printf(\"%.0f%%\", s/cores)}'"
-when = "true"
-style = "fg:#ff7b72 bg:#21262d"
-format = '[💀 $output]($style) '
+# --- SAFETY ALARMS ---
+[[kubernetes.contexts]]
+context_pattern = "(?i).*prod.*"
+style = "bold bg:#ff0055 fg:#ffffff" 
+
+[[kubernetes.contexts]]
+context_pattern = "(?i).*(staging|uat).*"
+style = "bold bg:#ffff00 fg:#000000" 
+
+[aws]
+symbol = "☁️  "
+format = 'on [$symbol($profile )(\($region\) )]($style)'
+style = "bold fg:#bd93f9"
 
 # --- TIME MODULE ---
 [time]
 disabled = false
-time_format = "%I:%M %p"
-style = "bold fg:#f97316"
-format = '[\[$time\]]($style)'
+time_format = "%I:%M %p" # Shows 12-hour format (e.g., 03:15 PM)
+style = "bold fg:#ff8800"
+format = '[\[$time\]]($style) '
+
+# --- CUSTOM CPU MODULE (macOS) ---
+[custom.cpu]
+# This command adds up the CPU usage of all running processes and divides it by your Mac's core count
+command = "ps -A -o %cpu | awk -v cores=$(sysctl -n hw.ncpu) '{s+=$1} END {printf(\"%.0f%%\", s/cores)}'"
+when = "true"
+style = "bold red"
+format = '[💀 $output]($style) '
