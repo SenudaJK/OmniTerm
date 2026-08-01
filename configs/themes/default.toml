@@ -23,3 +23,18 @@ style = "bold bg:#eab308 fg:#000000"
 symbol = "☁️  "
 format = 'on [$symbol($profile )(\($region\) )]($style)'
 style = "bold yellow"
+
+# --- TIME MODULE ---
+[time]
+disabled = false
+time_format = "%I:%M %p" # Shows 12-hour format (e.g., 03:15 PM)
+style = "bold cyan"
+format = '[\[$time\]]($style) '
+
+# --- CUSTOM CPU MODULE (macOS) ---
+[custom.cpu]
+# This command adds up the CPU usage of all running processes and divides it by your Mac's core count
+command = "ps -A -o %cpu | awk -v cores=$(sysctl -n hw.ncpu) '{s+=$1} END {printf(\"%.0f%%\", s/cores)}'"
+when = "true"
+style = "bold red"
+format = '[💀 $output]($style) '
