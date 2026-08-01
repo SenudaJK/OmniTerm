@@ -45,4 +45,4 @@ We recommend **[MesloLGS NF](https://github.com/romkatv/powerlevel10k#meslo-nerd
 Once your Nerd Font is installed and set in your terminal, run this single command to bootstrap your environment:
 
 ```bash
-curl -sL [https://raw.githubusercontent.com/your-username/your-repo/main/install.sh](https://raw.githubusercontent.com/your-username/your-repo/main/install.sh) | bash
+curl -sL [https://raw.githubusercontent.com/SenudaJK/OmniTerm/refs/heads/main/install.sh](https://raw.githubusercontent.com/SenudaJK/OmniTerm/refs/heads/main/install.sh) | bash
