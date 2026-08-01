@@ -8,13 +8,16 @@ format = "[$path]($style)"
 truncate_to_repo = true
 
 [git_branch]
-symbol = ""
+symbol = " "
 style = "fg:#c084fc bg:#1e293b"
-format = '[$branch]($style)'
+format = 'on [$symbol$branch(:$remote_branch)]($style)'
 
 [git_status]
 style = "fg:#fb923c bg:#1e293b"
 format = '[$all_status$ahead_behind]($style)'
+ahead = '⇡'
+behind = '⇣'
+diverged = '⇕'
 
 # --- AZURE ---
 [azure]
