@@ -23,6 +23,34 @@ echo "🔌 Installing Zsh plugins..."
 git clone --quiet https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM}/plugins/zsh-autosuggestions || true
 git clone --quiet https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting || true
 
+# --- NEW THEME PICKER MENU ---
+echo ""
+echo "🎨 Choose your OmniTerm aesthetic:"
+echo "  1) Default (Standard Cloud Colors)"
+echo "  2) Cyberpunk (Neon Pink & Purple)"
+echo "  3) Hacker (Matrix Green)"
+echo ""
+
+# Read user input, ensuring it reads from the keyboard even when piped via curl
+read -p "Enter your choice [1-3] (Default: 1): " theme_choice </dev/tty
+
+case "$theme_choice" in
+  2)
+    THEME_URL="https://raw.githubusercontent.com/SenudaJK/OmniTerm/main/configs/themes/cyberpunk.toml"
+    echo "👾 Cyberpunk theme selected!"
+    ;;
+  3)
+    THEME_URL="https://raw.githubusercontent.com/SenudaJK/OmniTerm/main/configs/themes/hacker.toml"
+    echo "📟 Hacker theme selected!"
+    ;;
+  *)
+    THEME_URL="https://raw.githubusercontent.com/SenudaJK/OmniTerm/main/configs/themes/default.toml"
+    echo "☁️  Default theme selected!"
+    ;;
+esac
+echo ""
+# -----------------------------
+
 # 4. Install Starship (The Theme Engine)
 if ! command -v starship &> /dev/null; then
   echo "⭐ Installing Starship..."
@@ -45,12 +73,12 @@ if [ -f "$HOME/.zshrc" ]; then
   mv "$HOME/.zshrc" "$HOME/.zshrc.backup_$TIMESTAMP"
 fi
 
-# UPDATE 1: Point to your actual GitHub repo for the .zshrc file
+# Point to your actual GitHub repo for the .zshrc file
 curl -sL https://raw.githubusercontent.com/SenudaJK/OmniTerm/main/configs/.zshrc -o "$HOME/.zshrc"
 
 mkdir -p "$HOME/.config"
-# UPDATE 2: Point to your actual GitHub repo for the starship.toml file
-curl -sL https://raw.githubusercontent.com/SenudaJK/OmniTerm/main/configs/starship.toml -o "$HOME/.config/starship.toml"
+# Point to the dynamically selected theme URL
+curl -sL "$THEME_URL" -o "$HOME/.config/starship.toml"
 
 # 6. Change default shell to Zsh
 if [ "$SHELL" != "$(which zsh)" ]; then
@@ -59,19 +87,3 @@ if [ "$SHELL" != "$(which zsh)" ]; then
 fi
 
 echo "✅ Installation complete! Please restart your terminal."
-
-# OmniTerm Auto-Updater
-function omniterm-update() {
-  echo "🔄 Pulling latest OmniTerm configurations..."
-  
-  # Fetch latest Starship config
-  curl -sL https://raw.githubusercontent.com/SenudaJK/OmniTerm/main/configs/starship.toml -o "$HOME/.config/starship.toml"
-  
-  # Fetch latest Zsh aliases/plugins
-  # We output to a temporary file first to avoid breaking the active session during download
-  curl -sL https://raw.githubusercontent.com/SenudaJK/OmniTerm/main/configs/.zshrc -o "$HOME/.zshrc.tmp" && mv "$HOME/.zshrc.tmp" "$HOME/.zshrc"
-  
-  # Reload terminal
-  source ~/.zshrc
-  echo "✅ OmniTerm updated successfully!"
-}
