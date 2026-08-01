@@ -18,12 +18,6 @@ source $ZSH/oh-my-zsh.sh
 # Initialize Starship theme
 eval "$(starship init zsh)"
 
-# Subtle welcome banner for interactive shells
-if [[ -o interactive && -z "${OMNITERM_BANNER_SHOWN:-}" ]]; then
-  export OMNITERM_BANNER_SHOWN=1
-  printf '%s\n' "OmniTerm ready · cloud and Kubernetes context are live."
-fi
-
 # Helpful Aliases
 alias k="kubectl"
 alias kctx="kubectl config use-context"

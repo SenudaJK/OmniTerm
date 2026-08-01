@@ -70,12 +70,6 @@ time_format = "%I:%M %p"
 style = "bold fg:#fb923c"
 format = '[\[$time\]]($style)'
 
-[custom.project]
-command = '''repo_root=$(git rev-parse --show-toplevel 2>/dev/null); if [ -n "$repo_root" ]; then basename "$repo_root"; else basename "$PWD"; fi'''
-when = "true"
-style = "bold fg:#00ff00"
-format = '[󰧑 $output]($style)'
-
 [character]
 success_symbol = '[❯](bold #00ff00)'
 error_symbol = '[❯](bold #ff0055)'
