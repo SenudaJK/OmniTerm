@@ -83,3 +83,11 @@ function omniterm-theme() {
   source ~/.zshrc
   echo "✅ Theme updated successfully!"
 }
+
+# ---------------------------------------------------------
+# User Custom Aliases & Configurations
+# ---------------------------------------------------------
+# This file is safe from omniterm-update overwrites.
+if [ -f "$HOME/.omniterm_custom" ]; then
+  source "$HOME/.omniterm_custom"
+fi
