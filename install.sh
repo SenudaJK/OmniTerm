@@ -59,3 +59,19 @@ if [ "$SHELL" != "$(which zsh)" ]; then
 fi
 
 echo "✅ Installation complete! Please restart your terminal."
+
+# OmniTerm Auto-Updater
+function omniterm-update() {
+  echo "🔄 Pulling latest OmniTerm configurations..."
+  
+  # Fetch latest Starship config
+  curl -sL https://raw.githubusercontent.com/SenudaJK/OmniTerm/main/configs/starship.toml -o "$HOME/.config/starship.toml"
+  
+  # Fetch latest Zsh aliases/plugins
+  # We output to a temporary file first to avoid breaking the active session during download
+  curl -sL https://raw.githubusercontent.com/SenudaJK/OmniTerm/main/configs/.zshrc -o "$HOME/.zshrc.tmp" && mv "$HOME/.zshrc.tmp" "$HOME/.zshrc"
+  
+  # Reload terminal
+  source ~/.zshrc
+  echo "✅ OmniTerm updated successfully!"
+}
