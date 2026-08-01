@@ -40,6 +40,57 @@ We recommend **[MesloLGS NF](https://github.com/romkatv/powerlevel10k#meslo-nerd
 
 ---
 
+## 🛠️ Built-in Aliases
+
+OmniTerm comes packed with native shortcuts to speed up your workflow. 
+
+### Git Shortcuts
+
+| Command | Action | Git Equivalent |
+| :--- | :--- | :--- |
+| `ghb` | Create new branch | `git checkout -b` |
+| `ghm` | Switch to main | `git checkout main` |
+| `ghs` | Check status | `git status` |
+| `gha` | Stage all changes | `git add .` |
+| `ghc` | Commit with message | `git commit -m` |
+| `ghps` | Push changes | `git push` |
+| `ghpl` | Pull latest | `git pull` |
+
+### DevOps Shortcuts
+
+| Command | Action | Equivalent |
+| :--- | :--- | :--- |
+| `k` | Kubernetes CLI | `kubectl` |
+| `kctx` | Change Context | `kubectl config use-context` |
+| `azg` | List Resource Groups | `az group list -o table` |
+
+---
+
+## 🔧 Adding Your Own Custom Aliases
+
+Because OmniTerm features an auto-updater, any changes you make directly to `~/.zshrc` will be overwritten the next time you update. 
+
+To add your own permanent, custom aliases, OmniTerm provides a designated "Safe Zone" file:
+
+1. Create a custom file in your home directory:
+
+```bash
+touch ~/.omniterm_custom
+```
+
+1. Open that file in your favorite editor, for example `nano ~/.omniterm_custom` or `code ~/.omniterm_custom`, and add your aliases:
+
+```bash
+alias myproject="cd ~/Documents/GitHub/my-project"
+alias python="python3"
+```
+
+1. Restart your terminal or type `source ~/.zshrc`.
+
+Your personal aliases are now active and will **survive all future `omniterm-update` commands!**
+
+---
+
 ## ⚡ Installation
 
 Once your Nerd Font is installed and set in your terminal, run this single command to bootstrap your environment:
