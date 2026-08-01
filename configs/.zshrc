@@ -23,6 +23,15 @@ alias k="kubectl"
 alias kctx="kubectl config use-context"
 alias azg="az group list -o table"
 
+# Custom Git Shortcuts
+alias ghb="git checkout -b"     # Create and switch to a new branch
+alias ghm="git checkout main"   # Switch to main branch
+alias ghs="git status"          # Check working tree status
+alias gha="git add ."           # Stage all changes
+alias ghc="git commit -m"       # Commit with a message (Usage: ghc "your message")
+alias ghps="git push"           # Push changes
+alias ghpl="git pull"           # Pull latest changes
+
 # ---------------------------------------------------------
 # OmniTerm Auto-Updater
 # ---------------------------------------------------------
