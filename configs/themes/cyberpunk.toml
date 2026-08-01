@@ -1,7 +1,7 @@
 # --- CLEAN TWO-LINE PROMPT ---
-format = """[ $directory ](bg:#1e293b fg:#38bdf8)[git: $git_branch $git_status](bg:#1e293b fg:#c084fc)[ $azure](bg:#1e293b)[ $kubernetes](bg:#1e293b)[ $aws](bg:#1e293b)[ ${custom.cpu}](bg:#1e293b)[ $cmd_duration ](bg:#1e293b fg:#facc15)
+format = """[ $directory ](bg:#1e293b fg:#38bdf8)[git: $git_branch $git_status](bg:#1e293b fg:#c084fc)[ ${custom.project}](bg:#1e293b)[ $azure](bg:#1e293b)[ $kubernetes](bg:#1e293b)[ $aws](bg:#1e293b)[ ${custom.cpu}](bg:#1e293b)[ $cmd_duration ](bg:#1e293b fg:#facc15)
 $character"""
-right_format = '[\[$time\]]($time_style)'
+right_format = '$time ${custom.project}'
 
 [directory]
 style = "bold fg:#38bdf8 bg:#1e293b"
@@ -69,6 +69,12 @@ disabled = false
 time_format = "%I:%M %p"
 style = "bold fg:#fb923c"
 format = '[\[$time\]]($style)'
+
+[custom.project]
+command = '''repo_root=$(git rev-parse --show-toplevel 2>/dev/null); if [ -n "$repo_root" ]; then basename "$repo_root"; else basename "$PWD"; fi'''
+when = "true"
+style = "bold fg:#ff00ff"
+format = '[󰧑 $output]($style)'
 
 [character]
 success_symbol = '[❯](bold #ff00ff)'
