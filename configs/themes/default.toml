@@ -1,38 +1,38 @@
-# --- MAIN PROMPT FORMAT WITH CLOUD & SAFETY ALARMS ---
-format = """[ $directory ](bg:#21262d fg:#58a6ff)[git: $git_branch $git_status](bg:#21262d fg:#bc8cff)[ $azure](bg:#21262d)[ $kubernetes](bg:#21262d)[ $aws](bg:#21262d)[ $custom ](bg:#21262d)
+# --- TOP STATUS LINE WITH A VISIBLE, MATCHING BACKGROUND ---
+format = """[ $directory ](bg:#1e293b fg:#38bdf8)[git: $git_branch $git_status](bg:#1e293b fg:#c084fc)[ $azure](bg:#1e293b)[ $kubernetes](bg:#1e293b)[ $aws](bg:#1e293b)[ $custom )(bg:#1e293b)[ $cmd_duration ](bg:#1e293b fg:#facc15)
 [ $time]($time_style) $character"""
 
 [directory]
-style = "bold fg:#58a6ff bg:#21262d"
+style = "bold fg:#38bdf8 bg:#1e293b"
 format = "[$path]($style)"
 truncate_to_repo = true
 
 [git_branch]
 symbol = ""
-style = "fg:#bc8cff bg:#21262d"
+style = "fg:#c084fc bg:#1e293b"
 format = '[$branch]($style)'
 
 [git_status]
-style = "fg:#f0883e bg:#21262d"
+style = "fg:#fb923c bg:#1e293b"
 format = '[$all_status$ahead_behind]($style)'
 
 # --- AZURE ---
 [azure]
 symbol = "󰠅 "
 format = '[$symbol($subscription)]($style)'
-style = "fg:#38bdf8 bg:#21262d"
+style = "fg:#38bdf8 bg:#1e293b"
 disabled = false
 
 # --- KUBERNETES & PRODUCTION ALARM ---
 [kubernetes]
 symbol = "☸ "
 format = '[$symbol($context \($namespace\))]($style)'
-style = "fg:#4ade80 bg:#21262d"
+style = "fg:#4ade80 bg:#1e293b"
 disabled = false
 
 [[kubernetes.contexts]]
 context_pattern = "(?i).*prod.*"
-style = "bold bg:#ff0000 fg:#ffffff"
+style = "bold bg:#ef4444 fg:#ffffff"
 
 [[kubernetes.contexts]]
 context_pattern = "(?i).*(staging|uat).*"
@@ -42,19 +42,26 @@ style = "bold bg:#eab308 fg:#000000"
 [aws]
 symbol = "☁️ "
 format = '[$symbol($profile)]($style)'
-style = "fg:#fbbf24 bg:#21262d"
+style = "fg:#fbbf24 bg:#1e293b"
 disabled = false
 
 # --- SYSTEM METRICS (CPU SKULL) ---
 [custom.cpu]
 command = "ps -A -o %cpu | awk -v cores=$(sysctl -n hw.ncpu) '{s+=$1} END {printf(\"%.0f%%\", s/cores)}'"
 when = "true"
-style = "fg:#ff7b72 bg:#21262d"
+style = "fg:#f87171 bg:#1e293b"
 format = '[💀 $output]($style)'
+
+# --- COMMAND DURATION (e.g., took 4s) ---
+[cmd_duration]
+min_time = 2000
+style = "fg:#facc15 bg:#1e293b"
+format = '[took $duration]($style)'
+disabled = false
 
 # --- TIME MODULE ---
 [time]
 disabled = false
 time_format = "%I:%M %p"
-style = "bold fg:#f97316"
+style = "bold fg:#fb923c"
 format = '[\[$time\]]($style)'
