@@ -32,7 +32,7 @@ disabled = false
 # --- KUBERNETES & PRODUCTION ALARM ---
 [kubernetes]
 symbol = "☸ "
-format = 'on [⛵ ($user on )($cluster in )$context \($namespace\)]($style) '
+format = '[⛵ $symbol($context \($namespace\))]($style)'
 style = "fg:#4ade80 bg:#1e293b"
 disabled = false
 
