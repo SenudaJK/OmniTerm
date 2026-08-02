@@ -18,6 +18,20 @@ source $ZSH/oh-my-zsh.sh
 # Initialize Starship theme
 eval "$(starship init zsh)"
 
+# ASCII welcome banner
+if [ -t 1 ]; then
+  echo ""
+  echo "  ██████╗ ██╗   ██╗███╗   ██╗██╗███╗   ███╗"
+  echo "  ██╔══██╗██║   ██║████╗  ██║██║████╗ ████║"
+  echo "  ██████╔╝██║   ██║██╔██╗ ██║██║██╔████╔██║"
+  echo "  ██╔══██╗██║   ██║██║╚██╗██║██║██║╚██╔╝██║"
+  echo "  ██║  ██║╚██████╔╝██║ ╚████║██║██║ ╚═╝ ██║"
+  echo "  ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝╚═╝     ╚═╝"
+  echo ""
+  echo "  Welcome to OmniTerm — type 'omni-help' for shortcuts"
+  echo ""
+fi
+
 # Helpful Aliases
 alias k="kubectl"
 alias azg="az group list -o table"
