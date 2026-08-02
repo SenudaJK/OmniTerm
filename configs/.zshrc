@@ -91,3 +91,8 @@ function omniterm-theme() {
 if [ -f "$HOME/.omniterm_custom" ]; then
   source "$HOME/.omniterm_custom"
 fi
+
+# ---------------------------------------------------------
+# Zoxide (Smarter 'cd' navigation)
+# ---------------------------------------------------------
+eval "$(zoxide init zsh)"

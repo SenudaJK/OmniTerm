@@ -51,6 +51,16 @@ format = '[$symbol($profile)]($style)'
 style = "fg:#fbbf24 bg:#1e293b"
 disabled = false
 
+[docker_context]
+symbol = "🐳 "
+style = "fg:#0db7ed bg:#1e293b"
+format = '[$symbol$context]($style)'
+
+[package]
+symbol = "📦 "
+style = "fg:#f28e2c bg:#1e293b"
+format = '[$symbol$version]($style)'
+
 # --- NODE.JS ---
 [nodejs]
 symbol = " "
