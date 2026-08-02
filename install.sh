@@ -64,6 +64,16 @@ if ! command -v starship &> /dev/null; then
   curl -sS https://starship.rs/install.sh | sh -s -- -y
 fi
 
+# 4.5 Install zoxide for smarter navigation
+if ! command -v zoxide &> /dev/null; then
+  echo "🧭 Installing zoxide..."
+  if command -v brew &> /dev/null; then
+    brew install zoxide
+  else
+    curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+  fi
+fi
+
 # 5. Backup and inject configurations
 echo "⚙️  Setting up configurations..."
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
