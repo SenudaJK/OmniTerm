@@ -1,5 +1,5 @@
 # --- CLEAN TWO-LINE PROMPT ---
-format = """[ $directory ](bg:#1e293b fg:#38bdf8)[git: $git_branch $git_status](bg:#1e293b fg:#c084fc)[ $azure](bg:#1e293b)[ $kubernetes](bg:#1e293b)[ $aws](bg:#1e293b)[ ${custom.cpu}](bg:#1e293b)[ $cmd_duration ](bg:#1e293b fg:#facc15)
+format = """[ $directory ](bg:#1e293b fg:#38bdf8)[git: $git_branch $git_status](bg:#1e293b fg:#c084fc)[ $azure](bg:#1e293b)[ $kubernetes](bg:#1e293b)[ $aws](bg:#1e293b)[ ${custom.cpu}](bg:#1e293b)[ ${custom.ram}](bg:#1e293b)[ $cmd_duration ](bg:#1e293b fg:#facc15)
 $character"""
 
 # This places the time module on the far right of your terminal
