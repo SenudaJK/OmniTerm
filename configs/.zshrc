@@ -23,23 +23,45 @@ alias k="kubectl"
 alias azg="az group list -o table"
 
 kctx() {
+  if ! command -v kubectl >/dev/null 2>&1; then
+    echo "kubectl is not installed."
+    return 1
+  fi
+
   if [ $# -eq 0 ]; then
-    if command -v kubectl >/dev/null 2>&1; then
-      local context
-      context=$(kubectl config get-contexts -o name 2>/dev/null | fzf --height=40% --reverse --prompt='Select context: ')
-      if [ -n "$context" ]; then
-        kubectl config use-context "$context"
-      else
-        echo "No context selected."
-        return 1
-      fi
+    local current_context
+    current_context=$(kubectl config current-context 2>/dev/null || true)
+
+    echo "Current context: ${current_context:-none}"
+    local context
+    context=$(kubectl config get-contexts -o name 2>/dev/null | fzf --height=40% --reverse --prompt='Select context: ')
+
+    if [ -n "$context" ]; then
+      kubectl config use-context "$context"
+      echo "Switched to context: $context"
     else
-      echo "kubectl is not installed."
+      echo "No context selected."
       return 1
     fi
   else
     kubectl config use-context "$1"
+    echo "Switched to context: $1"
   fi
+}
+
+omni-help() {
+  echo "OmniTerm shortcuts"
+  echo "  kctx            Switch Kubernetes context interactively"
+  echo "  kctx <name>     Switch to a specific context"
+  echo "  omniterm-update Update OmniTerm shell config"
+  echo "  omniterm-theme  Change the Starship theme"
+  echo "  ghb             Create a new git branch"
+  echo "  ghm             Switch to main branch"
+  echo "  ghs             Show git status"
+  echo "  gha             Stage all changes"
+  echo "  ghc <msg>       Commit changes"
+  echo "  ghps            Push changes"
+  echo "  ghpl            Pull changes"
 }
 
 # Custom Git Shortcuts
