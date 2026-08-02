@@ -50,6 +50,8 @@ alias gha="git add ."           # Stage all changes
 alias ghc="git commit -m"       # Commit with a message (Usage: ghc "your message")
 alias ghps="git push"           # Push changes
 alias ghpl="git pull"           # Pull latest changes
+alias ghsh="git stash"          # Stash 
+alias ghshp="git stash pop"     # Pop the latest stash
 
 # ---------------------------------------------------------
 # OmniTerm Auto-Updater
