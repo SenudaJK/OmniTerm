@@ -64,13 +64,30 @@ if ! command -v starship &> /dev/null; then
   curl -sS https://starship.rs/install.sh | sh -s -- -y
 fi
 
-# 4.5 Install zoxide for smarter navigation
-if ! command -v zoxide &> /dev/null; then
-  echo "🧭 Installing zoxide..."
-  if command -v brew &> /dev/null; then
+# 4.5 Install zoxide and fzf for smarter navigation
+if command -v brew &> /dev/null; then
+  if ! command -v zoxide &> /dev/null; then
+    echo "🧭 Installing zoxide..."
     brew install zoxide
-  else
+  fi
+
+  if ! command -v fzf &> /dev/null; then
+    echo "🔎 Installing fzf..."
+    brew install fzf
+  fi
+else
+  if ! command -v zoxide &> /dev/null; then
+    echo "🧭 Installing zoxide..."
     curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+  fi
+
+  if ! command -v fzf &> /dev/null; then
+    echo "🔎 Installing fzf..."
+    if command -v apt-get &> /dev/null; then
+      sudo apt-get update && sudo apt-get install -y fzf
+    elif command -v yum &> /dev/null; then
+      sudo yum install -y fzf
+    fi
   fi
 fi
 
