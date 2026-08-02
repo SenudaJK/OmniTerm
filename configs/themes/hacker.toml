@@ -51,6 +51,20 @@ format = '[$symbol($profile)]($style)'
 style = "fg:#fbbf24 bg:#1e293b"
 disabled = false
 
+# --- NODE.JS ---
+[nodejs]
+symbol = " "
+style = "fg:#4ade80 bg:#1e293b"
+format = '[$symbol($version)]($style)'
+disabled = false
+
+# --- PYTHON ---
+[python]
+symbol = " "
+style = "fg:#facc15 bg:#1e293b"
+format = '[$symbol($version)]($style)'
+disabled = false
+
 # --- SYSTEM METRICS (CPU SKULL) ---
 [custom.cpu]
 command = "ps -A -o %cpu | awk -v cores=$(sysctl -n hw.ncpu) '{s+=$1} END {printf(\"%.0f%%\", s/cores)}'"
