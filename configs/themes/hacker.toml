@@ -37,11 +37,11 @@ style = "fg:#4ade80 bg:#1e293b"
 disabled = false
 
 [[kubernetes.contexts]]
-context_pattern = "(?i).*prod.*"
+context_pattern = "[Pp][Rr][Oo][Dd]"
 style = "bold bg:#ef4444 fg:#ffffff"
 
 [[kubernetes.contexts]]
-context_pattern = "(?i).*(staging|uat).*"
+context_pattern = "(staging|uat|Staging|UAT)"
 style = "bold bg:#eab308 fg:#000000"
 
 # --- AWS ---
