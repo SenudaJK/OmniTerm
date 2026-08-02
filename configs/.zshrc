@@ -24,12 +24,22 @@ alias azg="az group list -o table"
 
 kctx() {
   if [ $# -eq 0 ]; then
-    echo "Usage: kctx <context-name>"
-    echo "Example: kctx kind-kind"
-    return 1
+    if command -v kubectl >/dev/null 2>&1; then
+      local context
+      context=$(kubectl config get-contexts -o name 2>/dev/null | fzf --height=40% --reverse --prompt='Select context: ')
+      if [ -n "$context" ]; then
+        kubectl config use-context "$context"
+      else
+        echo "No context selected."
+        return 1
+      fi
+    else
+      echo "kubectl is not installed."
+      return 1
+    fi
+  else
+    kubectl config use-context "$1"
   fi
-
-  kubectl config use-context "$1"
 }
 
 # Custom Git Shortcuts
