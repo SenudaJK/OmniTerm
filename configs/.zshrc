@@ -20,8 +20,17 @@ eval "$(starship init zsh)"
 
 # Helpful Aliases
 alias k="kubectl"
-alias kctx="kubectl config use-context"
 alias azg="az group list -o table"
+
+kctx() {
+  if [ $# -eq 0 ]; then
+    echo "Usage: kctx <context-name>"
+    echo "Example: kctx kind-kind"
+    return 1
+  fi
+
+  kubectl config use-context "$1"
+}
 
 # Custom Git Shortcuts
 alias ghb="git checkout -b"     # Create and switch to a new branch
